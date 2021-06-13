@@ -15,6 +15,7 @@ html {
 body {
     margin: 0;
     padding: 0;
+    min-width: 280px;
     font-family: sans-serif;
     li {
         list-style-type: none;
@@ -43,18 +44,28 @@ header {
     ul {
         position: absolute;
         margin: 10px 0 0 20px;
+        min-width: 250px;
+        @media (max-width: 480px) {
+            margin: 5px 0 0 10px;
+        }
         padding: 5px;
+        padding-left: 10px;
         font-size: 1.1em;
         font-weight: bold;
         font-style: italic;
         background: linear-gradient(to right, black, transparent);
         .contacts {
             display: flex;
-            align-items: center;
-            img {
-                height: 1.5em;
+            margin-top: 7px;
+            @media (max-width: 900px) {
+                flex-wrap: wrap;
             }
             span {
+                img {
+                    height: 1.5em;
+                }
+                display: inline-flex;
+                align-items: center;
                 margin-right: 10px;
             }
         }
@@ -62,4 +73,43 @@ header {
         font-size: 0.9em;
         }
     }
-}  
+}
+
+.scroll-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    width: 45%;
+    @media (max-width: 768px) {
+        width: 95%;
+    }
+    img {
+        max-width: auto;
+        position: absolute;
+        left: 5px;
+    }
+}
+
+main {
+    width: 60%;
+    @media (max-width: 992px) {
+        width: 80%;
+    }
+    @media (max-width: 768px) {
+        width: 95%;
+    }
+    margin: auto;
+    .chapter {
+        margin: 20px 0;
+        padding: 10px;
+        .code-example {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: space-around;
+            padding: 10px;
+        }
+    }
+}
