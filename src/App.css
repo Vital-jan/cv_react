@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 150px;
+  padding-top: 150px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body li {
+  list-style-type: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #02061f;
   color: white;
+  height: 100px;
+  z-index: 1000;
+  background-image: url(./img/bg.jpg);
+  background-size: 100% 150px;
+  background-repeat: no-repeat;
 }
 
-.App-link {
-  color: #61dafb;
+header ul {
+  position: absolute;
+  margin: 10px 0 0 20px;
+  padding: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+  background: -webkit-gradient(linear, left top, right top, from(black), to(transparent));
+  background: linear-gradient(to right, black, transparent);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+header ul .contacts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header ul .contacts img {
+  height: 1.5em;
+}
+
+header ul .contacts span {
+  margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+  header ul {
+    font-size: 0.9em;
   }
 }
+/*# sourceMappingURL=App.css.map */
