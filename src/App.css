@@ -108,6 +108,26 @@ header ul .contacts span img {
   left: 5px;
 }
 
+.slider {
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  width: 500px;
+  height: 300px;
+}
+
+.slider .img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.slider .next-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 main {
   width: 60%;
   margin: auto;
@@ -123,6 +143,11 @@ main {
   main {
     width: 95%;
   }
+}
+
+main p {
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 main .chapter {
