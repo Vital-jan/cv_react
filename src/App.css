@@ -34,6 +34,11 @@ header {
   background-repeat: no-repeat;
 }
 
+header a {
+  color: white;
+  text-decoration: none;
+}
+
 header ul {
   position: absolute;
   margin: 10px 0 0 20px;
@@ -128,6 +133,18 @@ header ul .contacts span img {
   top: 0;
 }
 
+.scale-image {
+  position: relative;
+}
+
+.scale-image img {
+  position: absolute;
+  display: block;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+}
+
 main {
   width: 60%;
   margin: auto;
@@ -145,9 +162,24 @@ main {
   }
 }
 
+main a {
+  color: #01010f;
+  font-weight: bold;
+}
+
+main iframe {
+  display: block;
+  position: relative;
+  margin: auto;
+  border-radius: 5px;
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
 main p {
   margin: 0;
   margin-bottom: 10px;
+  position: relative;
 }
 
 main .chapter {

@@ -40,7 +40,10 @@ header {
     background-image: url(./img/bg.jpg);
     background-size: 100% 150px;
     background-repeat: no-repeat;
-  
+    a {
+        color: $nav_color;
+        text-decoration: none;
+    }
     ul {
         position: absolute;
         margin: 10px 0 0 20px;
@@ -110,6 +113,16 @@ header {
     }
 }
 
+.scale-image {
+    position: relative;
+    img {
+        position: absolute;
+        display: block;
+        position: relative;
+        margin: auto;
+        cursor: pointer;
+    }
+}
 main {
     width: 60%;
     @media (max-width: 992px) {
@@ -119,9 +132,22 @@ main {
         width: 95%;
     }
     margin: auto;
+    a {
+        color: rgb(1, 1, 15);
+        font-weight: bold;
+    }
+    iframe {
+        display: block;
+        position: relative;
+        margin: auto;
+        border-radius: 5px;
+        border: 1px solid gray;
+        cursor: pointer;
+    }
     p {
         margin: 0;
         margin-bottom: 10px;
+        position: relative;
     }
     .chapter {
         margin: 20px 0;

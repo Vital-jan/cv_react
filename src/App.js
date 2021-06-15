@@ -1,6 +1,49 @@
 import "./App.css";
 import React from "react";
 
+class ScaleImage extends React.Component { // scale image component
+    constructor (props){
+        super();
+        this.iteration = 50;
+        this.state = {width: props.minWidth};
+        this.delta = (props.maxWidth - props.minWidth) / this.iteration;
+        this.expanded = false;
+    }
+
+    click = ()=>{
+        if (!this.expanded) {
+            this.timer = setInterval(()=>{
+                this.setState({width: this.state.width + this.delta});
+                if (this.state.width >= this.props.maxWidth) {
+                    this.expanded = true;
+                    clearInterval(this.timer);
+                }
+            }, 500 / this.iteration);
+        } else {
+            this.timer = setInterval(()=>{
+                this.setState({width: this.state.width - this.delta});
+                if (this.state.width <= this.props.minWidth) {
+                    this.expanded = false;
+                    clearInterval(this.timer);
+                }
+            }, 500 / this.iteration);
+        }
+    }
+
+    render (){
+        return(
+            <div className="scale-image">
+                <img
+                    src={this.props.img}
+                    alt=""
+                    style={{width: this.state.width}}
+                    onClick={this.click}
+                />
+            </div>
+        );
+    }
+}
+
 class ScrollImage extends React.Component { // scroll image component
     // props:
     // height: component height
@@ -125,29 +168,50 @@ class App extends React.Component {
 				<header>
 					<ul className="header-content">
 						<li>Віталій Коломієць</li>
-						<li>Frontend developer</li>
+						<li>Junior frontend developer</li>
 						<li className="contacts">
 							<span>
 								<img src="./img/viber.png" alt="" />
-								<span>+38 063 2209770</span>
+								<span><a href="tel:+380632209770">+38 063 2209770</a></span>
 							</span>
-							<span>vitaljan@gmail.com</span>
+							<span><a href="mailto:vitaljan@gmail.com">vitaljan@gmail.com</a></span>
 							<span>@vital_jan</span>
 						</li>
 					</ul>
 				</header>
 				<main>
+                    <div className="chapter">
+                        <h2>
+                            Стек технологій:
+                        </h2>
+                        <p>
+                            HTML, SASS, JS, Jquery, Bootstrap, ReactJS, PHP, MySQL, Codeigniter, Github, Linux Ubuntu, VS Code.
+                        </p>
+                        <p>
+                            Також доводилось працювати з Ruby, Python + Django, PostgreSQL, MariaDB, 1C bitrix.
+                        </p>
+                        <p>
+                            Цікавлюсь також NodeJS, вивчаю English та ReactJS.
+                        </p>
+                        <p>
+                            Прагну зайняти своє місце в команді професіоналів, підвищити рівень кваліфікації, здобути нових знань.
+                        </p>
+                        <p>
+                            Цей сайт розроблений на React JS та є зразком моєї роботи. Інші зразки робіт на React, досвід роботи та деякі мої проекти дивіться <a href="#examples">тут.</a>
+                        </p>
+                    </div>
 					<div className="chapter">
-						Програмуванням захоплююсь з 15 років
-						<br />
-						Перший прибуток в it отримав у 9 класі середньої школи
-					</div>
-					<div className="chapter">
+                    <p>
+                        Програмуванням захоплююсь з 15 років.
+						Перший прибуток в it отримав у 9 класі середньої школи.
+                    </p>
+                    <p>
 						Перший комерційний досвід — фізфак університету
 						ім.Шевченка. Самостійно розробив комплекс введення та
 						друку кирілічних символів, драйвери відеосистеми та
 						клавіатури, текстовий редактор для наукових текстів та
 						інше (Turbo-pascal, Assembler)
+                    </p>
 						<div className="code-example">
 							<ScrollImage imgHeight={733} img={"./img/asm1.jpg"} height={90} />
 							<ScrollImage imgHeight={1464} img={"./img/pas1.jpg"} height={90} />
@@ -175,19 +239,80 @@ class App extends React.Component {
 						<Slider img={this.slider1} width={500} height={300} delay={2500}/>
 					</div>
 					<div className="chapter">
-						Військове волонтерство 2014-2017р поставило хрест на
-						моїй кар’єрі в комерційній сфері. Було обране рішення
-						поновити знання та повернутись в it.
+                        <p>
+                            Військове волонтерство 2014-2017р поставило хрест на
+                            моїй кар’єрі в комерційній сфері. Було обране рішення
+                            поновити знання та повернутись в it.
+                        </p>
+                        <p>
+                            Впродовж 2018-19р навчався в комп’ютерній академії “Шаг”
+                            за фахом “Розробка і просування web-проектів”,
+                            паралельно працюючи в таксі та виховуючи дітей.
+                        </p>
+                        <div>
+                            <ScaleImage img="./img/diplom.jpg" minWidth={200} maxWidth={600}/>
+                        </div>
+                        <p></p>
+                        <p>
+                            З березня по липень 2020р працював як trainee у it стартапі. Стек технологій: Ruby, Python+Django, PostgreSQL, ReactJS. Навчився працювати в команді (pull requests, code review, standups, sprint plannings, trello, jira, slack, clockify).
+                        </p>
 					</div>
+                    <div className="chapter"></div>
+                    <h2 id="examples">Досвід та зразки робіт</h2>
 					<div className="chapter">
-						Впродовж 2018-19р навчався в комп’ютерній академії “Шаг”
-						за фахом “Розробка і просування web-проектів”,
-						паралельно працюючи в таксі та виховуючи дітей.
-					</div>
-					<div className="chapter"></div>
-					<div className="chapter"></div>
-					<div className="chapter"></div>
-					<div className="chapter"></div>
+                        <p>
+                            <a href="http://explorer.org.ua/react/" target="blanc">Мій перший React проект:</a>
+                        </p>
+                            
+                                <iframe title="clock" width="400px" height="350px" src="http://explorer.org.ua/react/" frameborder="0"></iframe>
+                            
+                    </div>
+					<div className="chapter">
+                        <p>
+                            <a href="http://explorer.org.ua/yalantis/" target="blanc">Тестове завдання по ReactJS</a>
+                        </p>
+                    </div>
+					<div className="chapter">
+                        <p>
+                            <a href="http://new.bak.lviv.ua" target="blanc">Мій перший fullstack проект</a>
+                        </p>
+                        <p>
+                            Розроблено наприкінці навчання в академії на замовлення львівського видавництва "Бак". Технології: PHP, MySQL, JS. Усі модулі самописні. Реалізовано авторизацію для сайт-адміна, адмін панель для редагування контенту, додавання/редагування/видалення елементів БД, завантаження та керування зображеннями.
+                        </p>
+                    </div>
+					<div className="chapter">
+                        <p>
+                            <a href="http://explorer.org.ua/wine" target="blank">Ще один проектів:</a>
+                        </p>
+                        <p>
+                            Замовник - World's Finest Wines, LLC, Greensboro, USA. Розробив макет, дизайн, скріпти. Технології: HTML, SASS, JS. Усі компоненти (анімація, слайдери, скроли) самописні. Особливої уваги приділив розділу “Explore our wines”.
+                        </p>
+                    </div>
+					<div className="chapter">
+                        <p>
+                            <a href="http://explorer.org.ua/projects/game/" target="blank">А цю гро я зробив для своїх дітей)</a>
+                        </p>
+                    </div>
+					<div className="chapter">
+                        <p>
+                            <a href="http://explorer.org.ua/projects/cross-zero/" target="blank">А ось приклад програмування простої логіки</a>
+                        </p>
+                        <p>
+                            Спробуйте перемогти “Експерта”, я навмисно залишив таку можливість)
+                        </p>
+                    </div>
+                    <div className="chapter">
+                        <h3>
+                            Досвід комерційної розробки з грудня 2020 року:
+                        </h3>
+                        <p>Компанія "СТІБ", fullstack (PHP, JS, Jquery, bitrix ORM). Розробка та інтеграція інструменту для імпорту та синхронізації каталогу постачальника інтернет магазину, підтримка та допрацювання інших сайтів на бітрікс.</p>
+                        <p>
+                            Компанія "GT1", fullstack (PHP, Codeigniter, MariaDB, JS, Jquery, Bootstrap). Підтримка web-проекту для потреб колл-центра.
+                        </p>
+                        <p>
+                            В теперішній час займаюсь розробкою власного стартапу (fullstack: PHP, Codeigniter, MySQL,JS, Jquery, Bootstrap).
+                        </p>
+                    </div>
 				</main>
 				<footer>FOOTER</footer>
 			</div>
