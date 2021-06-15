@@ -24,8 +24,8 @@ class ScrollImage extends React.Component { // scroll image component
     componentDidMount(){
         this.timer = setInterval(()=>{
             if (this.hold) return;
-            this.setState({top: this.state.top < -this.props.maxHeight ? this.props.height : this.state.top - 1})
-        }, 50);
+            this.setState({top: this.state.top < -this.props.imgHeight ? this.props.height : this.state.top - 1});
+        }, 40);
     }
 
 	render() {
@@ -65,21 +65,28 @@ class Slider extends React.Component {// slider component
 
 	componentDidMount() {
 		this.timer = setInterval(() => {
-			if (this.hold) return;
-			this.counter++;
-			if (this.counter > this.props.img.length - 1) this.counter = 0;
-			this.setState({ counter: this.counter });
+            if (this.hold) return;
+            let opacity = 1;
+            let fade = setInterval(()=>{
+                this.setState({opacity: opacity});
+                opacity -= 0.05;
+                if (opacity <= 0) {
+                    clearInterval(fade);
+                    this.counter++;
+                    if (this.counter > this.props.img.length - 1) this.counter = 0;
+                    this.setState({ counter: this.counter });
+                    this.setState({opacity: 1});
+                }
+            }, 10);
 		}, this.props.delay);
 	}
+
 	render() {
-		let counter =
-			this.props.counter < this.props.img.length
-				? this.props.counter
-				: this.props.img.length - 1;
-		let img = this.props.img[this.state.counter];
+		let counter = this.state.counter < this.props.img.length ? this.state.counter : this.props.img.length - 1;
+		let img = this.props.img[counter];
 		let nextImg =
 			this.props.img[
-				this.state.counter < this.props.img.length - 1 ? counter + 1 : 0
+				counter < this.props.img.length - 1 ? counter + 1 : 0
 			];
 		return (
 			<div
@@ -89,13 +96,17 @@ class Slider extends React.Component {// slider component
 				onMouseEnter={this.mouseEnter}
 				onMouseLeave={this.mouseLeave}
 			>
-				<img className="img" src={img} alt="" />
 				<img
 					className="next-img"
 					src={nextImg}
 					alt=""
-					style={{ left: this.props.width }}
+					// style={{ left: this.props.width}}
 				/>
+				<img
+                    className="img"
+                    src={img}
+                    style={{opacity: this.state.opacity}}
+                    alt="" />
 			</div>
 		);
 	}
@@ -161,7 +172,7 @@ class App extends React.Component {
 							впровадив її в 4-х компаніях, де працював. Отримав
 							значний досвід БД та SQL.
 						</p>
-						<Slider img={this.slider1} width={500} height={300} delay={2000}/>
+						<Slider img={this.slider1} width={500} height={300} delay={2500}/>
 					</div>
 					<div className="chapter">
 						Військове волонтерство 2014-2017р поставило хрест на
