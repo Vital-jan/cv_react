@@ -1,64 +1,111 @@
 import "./App.css";
 import React from "react";
 
-const ScrollImage = (props) => {
-	return (
-		<div className="scroll-image" style={{ height: props.height }}>
-			<img src={props.img} style={{ top: props.top + "px" }} alt="" />
-		</div>
-	);
-};
+class ScrollImage extends React.Component { // scroll image component
+    // props:
+    // height: component height
+    // imgHeight: child image height
+    // img: image filename
 
-const Slider = (props) => { // slider component
-    //props:
-    // width - slider component width
-    // height - slider component height
-    // img - slider img files array
-    // counter - the current image number
-    let counter = props.counter < props.img.length ? props.counter : props.img.length - 1;
-    let img = props.img[counter];
-    let nextImg = props.img[counter < props.img.length - 1 ? counter + 1 : 0];
-    return (
-        <div className="slider" width={props.width} height={props.height}>
-            <img className = "img" src={'./img/' + img} alt="" />
-            <img className = "next-img" src={'./img/' + nextImg} alt="" style={{left: props.width}}/>
-        </div>
-    );
-};
+	constructor(props) {
+        super();
+        this.imgHeight = props.imgHeight;
+        this.state = {top: 0};
+        this.hold = false;
+    }
+
+    mouseEnter =()=>{
+        this.hold = true;
+    }
+    mouseLeave =()=>{
+        this.hold = false;
+    }
+
+    componentDidMount(){
+        this.timer = setInterval(()=>{
+            if (this.hold) return;
+            this.setState({top: this.state.top < -this.props.maxHeight ? this.props.height : this.state.top - 1})
+        }, 50);
+    }
+
+	render() {
+		return (
+			<div className="scroll-image" style={{ height: this.props.height }}>
+				<img
+					src={this.props.img}
+					style={{ top: this.state.top + "px" }}
+					alt=""
+                    onMouseEnter={this.mouseEnter}
+                    onMouseLeave={this.mouseLeave}
+				/>
+			</div>
+		);
+	}
+}
+
+class Slider extends React.Component {// slider component
+	//props:
+	// width - slider component width
+	// height - slider component height
+	// img - slider img files array
+    // delay - image change delay (ms)
+	constructor() {
+		super();
+		this.hold = false;
+		this.counter = 0;
+		this.state = { counter: 0 };
+	}
+
+	mouseEnter = () => {
+		this.hold = true;
+	};
+	mouseLeave = () => {
+		this.hold = false;
+	};
+
+	componentDidMount() {
+		this.timer = setInterval(() => {
+			if (this.hold) return;
+			this.counter++;
+			if (this.counter > this.props.img.length - 1) this.counter = 0;
+			this.setState({ counter: this.counter });
+		}, this.props.delay);
+	}
+	render() {
+		let counter =
+			this.props.counter < this.props.img.length
+				? this.props.counter
+				: this.props.img.length - 1;
+		let img = this.props.img[this.state.counter];
+		let nextImg =
+			this.props.img[
+				this.state.counter < this.props.img.length - 1 ? counter + 1 : 0
+			];
+		return (
+			<div
+				className="slider"
+				width={this.props.width}
+				height={this.props.height}
+				onMouseEnter={this.mouseEnter}
+				onMouseLeave={this.mouseLeave}
+			>
+				<img className="img" src={img} alt="" />
+				<img
+					className="next-img"
+					src={nextImg}
+					alt=""
+					style={{ left: this.props.width }}
+				/>
+			</div>
+		);
+	}
+}
 
 class App extends React.Component {
 	constructor() {
 		super();
-		this.scrollObjects = [
-			{ height: 733, name: "asm1.jpg", windowHeight: 90 },
-			{ height: 1464, name: "pas1.jpg", windowHeight: 90 },
-		];
-		this.state = { scrollers: [0, 0] };
-        this.slider1 = [];
-        this.counter = 0;
-        this.timer = 0;
-        for (let n = 0; n <= 7; n++) this.slider1[n] = `scr${n+1}.jpg`;
-        this.state.slider = {counter: 0};
-	}
-
-	componentDidMount() {
-		this.interval = setInterval(() => {
-			let n = -1;
-			let s = this.state.scrollers.map((i) => {
-				n++;
-				return i < -this.scrollObjects[n].height
-					? this.scrollObjects[n].windowHeight
-					: i - 1;
-			});
-			this.setState({ scrollers: s });
-            if (this.timer % 20 === 0) {
-                console.log(this.counter)
-                this.counter++;
-                if (this.counter > this.slider1.length - 1) this.counter = 0;
-                this.setState({slider: {counter: this.counter}});
-            }
-            this.timer++;
-		}, 50);
+		this.slider1 = []; // slider img files array
+		for (let n = 0; n <= 7; n++) this.slider1[n] = `./img/scr${n + 1}.jpg`;
 	}
 
 	render() {
@@ -91,20 +138,8 @@ class App extends React.Component {
 						клавіатури, текстовий редактор для наукових текстів та
 						інше (Turbo-pascal, Assembler)
 						<div className="code-example">
-							<ScrollImage
-								height={
-									this.scrollObjects[0].windowHeight + "px"
-								}
-								img={"./img/" + this.scrollObjects[0].name}
-								top={this.state.scrollers[0]}
-							/>
-							<ScrollImage
-								height={
-									this.scrollObjects[1].windowHeight + "px"
-								}
-								img={"./img/" + this.scrollObjects[1].name}
-								top={this.state.scrollers[1]}
-							/>
+							<ScrollImage imgHeight={733} img={"./img/asm1.jpg"} height={90} />
+							<ScrollImage imgHeight={1464} img={"./img/pas1.jpg"} height={90} />
 						</div>
 					</div>
 					<div className="chapter">
@@ -126,7 +161,7 @@ class App extends React.Component {
 							впровадив її в 4-х компаніях, де працював. Отримав
 							значний досвід БД та SQL.
 						</p>
-                        <Slider img={this.slider1} width={500} height={300} counter = {this.state.slider.counter}></Slider>
+						<Slider img={this.slider1} width={500} height={300} delay={2000}/>
 					</div>
 					<div className="chapter">
 						Військове волонтерство 2014-2017р поставило хрест на
