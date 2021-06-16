@@ -101,6 +101,10 @@ header {
     margin: auto;
     width: 500px;
     height: 300px;
+    @media (max-width: 768px) {
+        width: 300px;
+        height: 200px;
+    }
     .img {
         position: absolute;
         left: 0;
@@ -123,6 +127,14 @@ header {
         cursor: pointer;
     }
 }
+.separator-horizontal {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #01101f, transparent);
+    margin: 20px 0;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
 main {
     width: 60%;
     @media (max-width: 992px) {
@@ -130,6 +142,9 @@ main {
     }
     @media (max-width: 768px) {
         width: 95%;
+        img {
+            max-width: 300px;
+        }
     }
     margin: auto;
     a {
@@ -142,12 +157,16 @@ main {
         margin: auto;
         border-radius: 5px;
         border: 1px solid gray;
-        cursor: pointer;
     }
     p {
         margin: 0;
         margin-bottom: 10px;
         position: relative;
+    }
+    .center {
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
     }
     .chapter {
         margin: 20px 0;

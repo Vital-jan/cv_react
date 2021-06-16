@@ -260,52 +260,64 @@ class App extends React.Component {
                     <div className="chapter"></div>
                     <h2 id="examples">Досвід та зразки робіт</h2>
 					<div className="chapter">
-                        <p>
+                        <h3>
                             <a href="http://explorer.org.ua/react/" target="blanc">Мій перший React проект:</a>
-                        </p>
-                            
-                                <iframe title="clock" width="400px" height="350px" src="http://explorer.org.ua/react/" frameborder="0"></iframe>
-                            
+                        </h3>
+                        <iframe title="clock" width="400px" height="350px" src="http://explorer.org.ua/react/" frameBorder="0"></iframe>
                     </div>
 					<div className="chapter">
-                        <p>
+                        <h3>
                             <a href="http://explorer.org.ua/yalantis/" target="blanc">Тестове завдання по ReactJS</a>
-                        </p>
+                        </h3>
                     </div>
 					<div className="chapter">
-                        <p>
-                            <a href="http://new.bak.lviv.ua" target="blanc">Мій перший fullstack проект</a>
-                        </p>
+                        <a href="http://new.bak.lviv.ua" target="blanc">
+                            <h3>
+                                Мій перший fullstack проект:
+                            </h3>
+                            <img src="./img/pr_bak.png" alt="" className="center" />
+                        </a>
                         <p>
                             Розроблено наприкінці навчання в академії на замовлення львівського видавництва "Бак". Технології: PHP, MySQL, JS. Усі модулі самописні. Реалізовано авторизацію для сайт-адміна, адмін панель для редагування контенту, додавання/редагування/видалення елементів БД, завантаження та керування зображеннями.
                         </p>
                     </div>
 					<div className="chapter">
-                        <p>
-                            <a href="http://explorer.org.ua/wine" target="blank">Ще один проектів:</a>
-                        </p>
+                        <a href="http://explorer.org.ua/wine" target="blank">
+                            <h3>Ще один з проектів:</h3>
+                            <img className="center" src="./img/pr_wine.png" alt="" />
+                        </a>
                         <p>
                             Замовник - World's Finest Wines, LLC, Greensboro, USA. Розробив макет, дизайн, скріпти. Технології: HTML, SASS, JS. Усі компоненти (анімація, слайдери, скроли) самописні. Особливої уваги приділив розділу “Explore our wines”.
                         </p>
                     </div>
 					<div className="chapter">
+                        <a href="http://explorer.org.ua/game/" target="blank">
+                            <h3>А цю гру я зробив для своїх дітей:</h3>
+                            <img className="center" src="./img/pr_game.png" alt="" />
+                        </a>
                         <p>
-                            <a href="http://explorer.org.ua/projects/game/" target="blank">А цю гро я зробив для своїх дітей)</a>
+                            Гра "істівне-неїстівне із саунд ефектами. OOP JS."
                         </p>
                     </div>
 					<div className="chapter">
-                        <p>
-                            <a href="http://explorer.org.ua/projects/cross-zero/" target="blank">А ось приклад програмування простої логіки</a>
-                        </p>
+                        <a href="http://explorer.org.ua/projects/cross-zero/" target="blank">
+                            <h3>А ось приклад програмування простої логіки:</h3>
+                            <img className="center" src="./img/pr_cross.png" alt="" />
+                        </a>
                         <p>
                             Спробуйте перемогти “Експерта”, я навмисно залишив таку можливість)
                         </p>
                     </div>
+                    <div className="chapter"></div>
                     <div className="chapter">
-                        <h3>
+                        <h2>
                             Досвід комерційної розробки з грудня 2020 року:
-                        </h3>
-                        <p>Компанія "СТІБ", fullstack (PHP, JS, Jquery, bitrix ORM). Розробка та інтеграція інструменту для імпорту та синхронізації каталогу постачальника інтернет магазину, підтримка та допрацювання інших сайтів на бітрікс.</p>
+                        </h2>
+                        <div className="separator-horizontal"></div>
+                        <p>
+                            Компанія "СТІБ", fullstack (PHP, JS, Jquery, bitrix ORM). Розробка та інтеграція інструменту для імпорту та синхронізації каталогу постачальника інтернет магазину, підтримка та допрацювання інших сайтів на бітрікс.
+                        </p>
+                        <div className="separator-horizontal"></div>
                         <p>
                             Компанія "GT1", fullstack (PHP, Codeigniter, MariaDB, JS, Jquery, Bootstrap). Підтримка web-проекту для потреб колл-центра.
                         </p>
