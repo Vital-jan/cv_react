@@ -127,6 +127,17 @@ header {
         cursor: pointer;
     }
 }
+
+.read-more {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+.read-more-button {
+    position: relative;
+    left: 0;
+    bottom: -20px;
+}
 .separator-horizontal {
     height: 2px;
     background: linear-gradient(to right, transparent, #01101f, transparent);
@@ -154,6 +165,13 @@ main {
     iframe {
         display: block;
         position: relative;
+        width: 400px;
+        height: 350px;
+        @media (max-width: 480px){
+            width: 280px;
+            height: 320px;
+        }
+        overflow: hidden;
         margin: auto;
         border-radius: 5px;
         border: 1px solid gray;
@@ -163,10 +181,25 @@ main {
         margin-bottom: 10px;
         position: relative;
     }
+    ul {
+        margin: 0;
+    }
+    textarea {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
     .center {
         display: block;
         margin: auto;
         margin-bottom: 20px;
+    }
+    .status-line {
+        font-style: italic;
+        color: rgb(1, 24, 3);
+        &.error {
+            color: rgb(85, 5, 5);
+        }
     }
     .chapter {
         margin: 20px 0;
@@ -178,5 +211,12 @@ main {
             align-items: space-around;
             padding: 10px;
         }
+    }
+}
+.invite {
+    input, textarea {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
     }
 }

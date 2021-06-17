@@ -152,6 +152,18 @@ header ul .contacts span img {
   cursor: pointer;
 }
 
+.read-more {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.read-more-button {
+  position: relative;
+  left: 0;
+  bottom: -20px;
+}
+
 .separator-horizontal {
   height: 2px;
   background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#01101f), to(transparent));
@@ -189,9 +201,19 @@ main a {
 main iframe {
   display: block;
   position: relative;
+  width: 400px;
+  height: 350px;
+  overflow: hidden;
   margin: auto;
   border-radius: 5px;
   border: 1px solid gray;
+}
+
+@media (max-width: 480px) {
+  main iframe {
+    width: 280px;
+    height: 320px;
+  }
 }
 
 main p {
@@ -200,10 +222,29 @@ main p {
   position: relative;
 }
 
+main ul {
+  margin: 0;
+}
+
+main textarea {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
 main .center {
   display: block;
   margin: auto;
   margin-bottom: 20px;
+}
+
+main .status-line {
+  font-style: italic;
+  color: #011803;
+}
+
+main .status-line.error {
+  color: #550505;
 }
 
 main .chapter {
@@ -223,5 +264,11 @@ main .chapter .code-example {
       -ms-flex-align: space-around;
           align-items: space-around;
   padding: 10px;
+}
+
+.invite input, .invite textarea {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
 }
 /*# sourceMappingURL=App.css.map */
