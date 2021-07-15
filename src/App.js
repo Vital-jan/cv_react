@@ -75,6 +75,7 @@ const ReadMoreTask = () => {
 		</div>
 	);
 };
+
 class ScaleImage extends React.Component {
 	// scale image component
 	constructor(props) {
@@ -225,12 +226,7 @@ class Slider extends React.Component {
 				onMouseEnter={this.mouseEnter}
 				onMouseLeave={this.mouseLeave}
 			>
-				<img
-					className="next-img"
-					src={nextImg}
-					alt=""
-					// style={{ left: this.props.width}}
-				/>
+				<img className="next-img" src={nextImg} alt="" />
 				<img
 					className="img"
 					src={img}
@@ -294,22 +290,22 @@ const Telegram = () => {
 const Invite = () => {
 	const action = (e) => {
 		e.preventDefault();
-        let msg = `Запрошення%0aКомпанія: ${company}%0aІм'я: ${name}%0aКонтакти: ${contacts}%0aПовідомлення:%0a${message}`;
+		let msg = `Запрошення%0aКомпанія: ${company}%0aІм'я: ${name}%0aКонтакти: ${contacts}%0aПовідомлення:%0a${message}`;
 		axios
 			.get(`${telegramURL}${msg}`)
 			.then(function (response) {
-				// setStatus("Повідомлення надіслане.");
-				// setStatusCode(200);
-				// setTimeout(() => {
-				// 	setStatus("");
-				// }, 3000);
+				setStatus("Повідомлення надіслане.");
+				setStatusCode(200);
+				setTimeout(() => {
+					setStatus("");
+				}, 3000);
 			})
 			.catch(function (error) {
-				// setStatus("Повідомлення не надіслане, повторіть спробу.");
-				// setStatusCode(404);
-				// setTimeout(() => {
-				// 	setStatus("");
-				// }, 5000);
+				setStatus("Повідомлення не надіслане, повторіть спробу.");
+				setStatusCode(404);
+				setTimeout(() => {
+					setStatus("");
+				}, 5000);
 			});
 	};
 	const companyChange = (e) => {
@@ -330,10 +326,29 @@ const Invite = () => {
 	const [contacts, setContacts] = useState("");
 	const [message, setMessage] = useState("");
 	const [submitEnable, setSubmitEnable] = useState(false);
+	const [status, setStatus] = useState("");
+	const [statusCode, setStatusCode] = useState(0);
 
 	const Button = () => {
-        let disabled = submitEnable ? '' : 'disabled';
-		return <button type="submit" disabled={disabled} >Запросити</button>;
+		let disabled = submitEnable ? "" : "disabled";
+		return (
+			<button type="submit" disabled={disabled}>
+				Запросити
+			</button>
+		);
+	};
+	const StatusLine = () => {
+		return (
+			<h3>
+				<span
+					className={
+						"status-line" + (statusCode === 404 ? " error" : "")
+					}
+				>
+					{status}
+				</span>
+			</h3>
+		);
 	};
 
 	return (
@@ -363,11 +378,30 @@ const Invite = () => {
 				placeholder="Повідомлення"
 				onChange={messageChange}
 			></textarea>
+			<StatusLine />
 			<Button />
 		</form>
 	);
 };
 
+// const Feedback = () => {
+// 	const submit = (e) => {
+// 		e.preventDefault();
+// 	};
+// 	return <div></div>;
+// };
+
+const DownloadPdf = (props) => {
+	const img = props.color === "white" ? "pdf_white.png" : "pdf.png";
+	const css = props.justify === "center" ? "center" : "";
+	return (
+		<div >
+			<a href="./cv.pdf" target="_blank">
+				<img src={`./img/${img}`} className={css} alt="" />
+			</a>
+		</div>
+	);
+};
 const Header = () => {
 	return (
 		<header>
@@ -389,6 +423,9 @@ const Header = () => {
 					<span>@vital_jan</span>
 				</li>
 			</ul>
+			<div className="header-pdf">
+				<DownloadPdf color="white" />
+			</div>
 		</header>
 	);
 };
@@ -408,8 +445,9 @@ class App extends React.Component {
 					<div className="chapter">
 						<h2>Стек технологій:</h2>
 						<p>
-							HTML, SASS, JS, Jquery, Bootstrap, ReactJS, PHP,
-							MySQL, Codeigniter, Github, Linux Ubuntu, VS Code.
+							HTML, SASS, JS, Jquery, Bootstrap, ReactJS, Axios,
+							PHP, MySQL, Codeigniter, Github, Linux Ubuntu, VS
+							Code.
 						</p>
 						<p>
 							Також доводилось працювати з Ruby, Python + Django,
@@ -418,13 +456,26 @@ class App extends React.Component {
 						<p>
 							Цікавлюсь також NodeJS, вивчаю English та ReactJS.
 						</p>
+						<div className="separator-horizontal"></div>
+						<p>Світчер з багаторічним досвідом у продажах.</p>
 						<p>
-							Прагну зайняти своє місце в команді професіоналів,
+							Розумію, що поріг входу в it дуже високий. Та як
+							колишній військовий волонтер - не зупиняюсь. Прагну
+							зайняти своє місце в команді професіоналів,
 							підвищити рівень кваліфікації, здобути нових знань.
 						</p>
+						<div className="separator-horizontal"></div>
+						<p>
+							В теперішній час займаюсь розробкою власного
+							стартапу в якості fullstack розробника. Стек
+							технологій: PHP, Codeigniter, MySQL, ReactJS, Axios,
+							Reactstrap, React router, Redux.
+						</p>
+						<div className="separator-horizontal"></div>
 						<p>
 							Цей сайт розроблений на React JS з використанням
-							Axios та Telegram API та є зразком моєї роботи.
+							Axios та Telegram API та, в свою чергу, є зразком
+							моєї роботи.
 						</p>
 						<p>
 							<a
@@ -466,8 +517,8 @@ class App extends React.Component {
 					</div>
 					<div className="chapter">
 						<p>
-							Пізніше зробив успішну кар’єру у сфері продажів, яку
-							закінчив на посаді керівника комерційного відділу.
+							Пізніше зробив успішну кар’єру у сфері продажів,
+							досягнувши посади керівника комерційного відділу.
 							Впродовж роботи в продажах програмування лишалось
 							моїм хобі.
 						</p>
@@ -511,10 +562,11 @@ class App extends React.Component {
 						<p></p>
 						<p>
 							З березня по липень 2020р працював як trainee у it
-							стартапі. Стек технологій: Ruby, Python+Django,
-							PostgreSQL, ReactJS. Навчився працювати в команді
-							(pull requests, code review, standups, sprint
-							plannings, trello, jira, slack, clockify).
+							стартапі на безоплатній основі. Стек технологій:
+							Ruby, Python+Django, PostgreSQL, ReactJS. Навчився
+							працювати в команді (pull requests, code review,
+							standups, sprint plannings, trello, jira, slack,
+							clockify).
 						</p>
 					</div>
 					<div className="chapter"></div>
@@ -551,7 +603,7 @@ class App extends React.Component {
 							href="http://explorer.org.ua/yalantis/"
 							target="blanc"
 						>
-							<h3>Тестове завдання по ReactJS:</h3>
+							<h3>Одне з тестових завдань по ReactJS:</h3>
 							<img
 								className="center"
 								src="./img/pr_yalantis.png"
@@ -695,11 +747,13 @@ class App extends React.Component {
 						<div className="separator-horizontal"></div>
 						<p>
 							В теперішній час займаюсь розробкою власного
-							стартапу (fullstack: PHP, Codeigniter, MySQL,JS,
-							Jquery, Bootstrap).
+							стартапу в якості fullstack розробника. Стек
+							технологій: PHP, Codeigniter, MySQL, ReactJS, Axios,
+							Reactstrap, React router, Redux.
 						</p>
 						<div className="separator-horizontal"></div>
 					</div>
+					<DownloadPdf justify="center" />
 					<div className="chapter">
 						<Invite />
 					</div>
