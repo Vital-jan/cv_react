@@ -384,18 +384,11 @@ const Invite = () => {
 	);
 };
 
-// const Feedback = () => {
-// 	const submit = (e) => {
-// 		e.preventDefault();
-// 	};
-// 	return <div></div>;
-// };
-
 const DownloadPdf = (props) => {
 	const img = props.color === "white" ? "pdf_white.png" : "pdf.png";
 	const css = props.justify === "center" ? "center" : "";
 	return (
-		<div >
+		<div>
 			<a href="./cv.pdf" target="_blank">
 				<img src={`./img/${img}`} className={css} alt="" />
 			</a>
@@ -449,27 +442,65 @@ class App extends React.Component {
 							PHP, MySQL, Codeigniter, Github, Linux Ubuntu, VS
 							Code.
 						</p>
-						<p>
-							Також доводилось працювати з Ruby, Python + Django,
-							PostgreSQL, MariaDB, 1C bitrix.
-						</p>
-						<p>
-							Цікавлюсь також NodeJS, вивчаю English та ReactJS.
-						</p>
-						<div className="separator-horizontal"></div>
-						<p>Світчер з багаторічним досвідом у продажах.</p>
-						<p>
-							Розумію, що поріг входу в it дуже високий. Та як
-							колишній військовий волонтер - не зупиняюсь. Прагну
-							зайняти своє місце в команді професіоналів,
-							підвищити рівень кваліфікації, здобути нових знань.
-						</p>
+						<p>Цікавлюсь також NodeJS, MongoDB.</p>
 						<div className="separator-horizontal"></div>
 						<p>
-							В теперішній час займаюсь розробкою власного
-							стартапу в якості fullstack розробника. Стек
-							технологій: PHP, Codeigniter, MySQL, ReactJS, Axios,
-							Reactstrap, React router, Redux.
+							Світчер з багаторічним досвідом у продажах. Web
+							розробкою займаюсь з 2018 року. Однак,
+							програмуванням захоплююсь ще з юнацтва. Свою
+							професійну кар’єру розпочинав саме в якості
+							розробника програмного забезпечення на мовах
+							assembler та turbo pascal.
+						</p>
+						<p>
+							У 2019 році почав розробляти невеликі
+							freelance-проекти, знаходячи замовників через
+							особисті контакти.
+						</p>
+						<p>
+							У 2020 році проходив 4-місячне стажування у it
+							стартапі. Навчився працювати у команді (github,
+							standups, sprint plannings, trello, jira, slack,
+							clockify).
+						</p>
+						<p>
+							2020-2021: <br />
+							Компанія "СТІБ" (PHP, JS, Jquery, bitrix ORM).
+							Розробка та інтеграція інструменту для імпорту та
+							синхронізації каталогу постачальника інтернет
+							магазину, підтримка та допрацювання інших сайтів на
+							бітрікс.
+							<br /> Компанія "GT1", fullstack (PHP, Codeigniter,
+							MariaDB, JS, Jquery, Bootstrap). Підтримка
+							web-проекту для потреб колл-центра.{" "}
+						</p>
+						<p>
+							У теперішній час зайнятий розробкою власного it
+							стартапу у якості fullstack розробника з
+							використанням React JS, reactstrap, react router,
+							axios, API: php/codeigniter, MySQL. Запуск 1-ї
+							версії проекту для бета тестування заплановано на
+							01.10.2021.
+						</p>
+                        <p>Скріншоти проекту:</p>
+						<p>
+							<ScaleImage
+								img="./img/n4r.png"
+								minWidth={200}
+								maxWidth={600}
+							/>
+						</p>
+						<p>
+							<ScaleImage
+								img="./img/n4r2.png"
+								minWidth={200}
+								maxWidth={600}
+							/>
+						</p>
+                        <div className="separator-horizontal"></div>
+						<p>
+							Прагну зайняти своє місце у команді професіоналів з
+							можливістю професійного зростання.
 						</p>
 						<div className="separator-horizontal"></div>
 						<p>
@@ -486,21 +517,20 @@ class App extends React.Component {
 							</a>
 						</p>
 						<p>
-							Інші зразки робіт на React, досвід роботи та деякі
-							мої проекти дивіться <a href="#examples">тут.</a>
+							Інші зразки робіт на React та деякі мої проекти
+							дивіться <a href="#examples">тут.</a>
 						</p>
 					</div>
+					<div className="separator-horizontal"></div>
+
 					<div className="chapter">
 						<p>
-							Програмуванням захоплююсь з 15 років. Перший
-							прибуток в it отримав у 9 класі середньої школи.
-						</p>
-						<p>
-							Перший комерційний досвід — фізфак університету
-							ім.Шевченка. Самостійно розробив комплекс введення
-							та друку кирилічних символів, драйвери відеосистеми
-							та клавіатури, текстовий редактор для наукових
-							текстів та інше (Turbo-pascal, Assembler)
+							Перший досвід отримав на початку своєї кар'єри на
+							фізфаку університету ім.Шевченка. Самостійно
+							розробив комплекс введення та друку кирилічних
+							символів, драйвери відеосистеми та клавіатури,
+							текстовий редактор для наукових текстів та інше
+							(Turbo-pascal, Assembler)
 						</p>
 						<div className="code-example">
 							<ScrollImage
@@ -543,14 +573,14 @@ class App extends React.Component {
 					</div>
 					<div className="chapter">
 						<p>
-							Військове волонтерство 2014-2017р поставило хрест на
-							моїй кар’єрі в комерційній сфері. Було обране
+							Військове волонтерство 2014-2017р призвело до появи
+							паузи у трудовій біографії, що значно ускладнило
+							пошук місця роботи за попереднім фахом. Було обране
 							рішення поновити знання та повернутись в it.
 						</p>
 						<p>
 							Впродовж 2018-19р навчався в комп’ютерній академії
-							“Шаг” за фахом “Розробка і просування web-проектів”,
-							паралельно працюючи в таксі та виховуючи дітей.
+							“Шаг” за фахом “Розробка і просування web-проектів”.
 						</p>
 						<div>
 							<ScaleImage
@@ -559,15 +589,6 @@ class App extends React.Component {
 								maxWidth={600}
 							/>
 						</div>
-						<p></p>
-						<p>
-							З березня по липень 2020р працював як trainee у it
-							стартапі на безоплатній основі. Стек технологій:
-							Ruby, Python+Django, PostgreSQL, ReactJS. Навчився
-							працювати в команді (pull requests, code review,
-							standups, sprint plannings, trello, jira, slack,
-							clockify).
-						</p>
 					</div>
 					<div className="chapter"></div>
 					<h2 id="examples">Досвід та зразки робіт</h2>
